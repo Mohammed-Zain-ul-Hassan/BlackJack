@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Game Result</title>
+</head>
+<body>
+    <div class="result">
+        <span class="message"></span><br>
+        <input type="text" placeholder="Give Feedback" class="input-b"><br>
+        <button type="submit" class="feedback">Submit</button><br>
+        <button type="button" class="ret">Return</button>
+    </div>
+    <script>
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nextState = urlParams.get('nextState');
+            const competition = urlParams.get('competition');
+            const sum = urlParams.get('sum');
+            let message = '';
+            if (nextState == 1) {
+                message = "You lose by " + (Number(competition) - Number(sum)) +" points, Better Luck Next Time!";
+            } else if (nextState == 2) {
+                message = "Congratulations! You Won by " + (Number(sum) - Number(competition)) + " points!";
+            } else if (nextState == 3) {
+                message = "You lose! You went over 21!";
+            } else if (nextState == -1){
+                message = "You should've given it a try!";
+            }
+            document.querySelector('.message').innerText = message;
+        };
+        let ret = document.querySelector(".ret") 
+
+        ret.addEventListener('click', () => {
+        window.location.href = 'index.html';
+  });
+        let fed = document.querySelector(".feedback") 
+
+        fed.addEventListener('click', () => {
+        window.location.href = 'index.html';
+});
+    </script>
+</body>
+</html>
